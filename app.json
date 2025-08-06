@@ -1,0 +1,169 @@
+{
+  "name": "DispoSMS Enhanced",
+  "description": "Premium Disposable SMS Platform - Enhanced Edition with Beautiful UI",
+  "repository": "https://github.com/yourusername/disposms-enhanced",
+  "logo": "https://raw.githubusercontent.com/yourusername/disposms-enhanced/main/public/logo.png",
+  "keywords": [
+    "sms",
+    "disposable",
+    "phone-numbers",
+    "otp",
+    "verification",
+    "nodejs",
+    "express",
+    "socket.io",
+    "real-time"
+  ],
+  "website": "https://disposms.com",
+  "success_url": "/",
+  "scripts": {
+    "postdeploy": "echo 'DispoSMS Enhanced deployed successfully!'"
+  },
+  "env": {
+    "NODE_ENV": {
+      "description": "Node.js environment",
+      "value": "production",
+      "required": true
+    },
+    "JWT_SECRET": {
+      "description": "Secret key for JWT token signing",
+      "generator": "secret",
+      "required": true
+    },
+    "JWT_REFRESH_SECRET": {
+      "description": "Secret key for JWT refresh token signing",
+      "generator": "secret",
+      "required": true
+    },
+    "JWT_EXPIRES_IN": {
+      "description": "JWT token expiration time",
+      "value": "1h",
+      "required": false
+    },
+    "JWT_REFRESH_EXPIRES_IN": {
+      "description": "JWT refresh token expiration time",
+      "value": "7d",
+      "required": false
+    },
+    "CORS_ORIGIN": {
+      "description": "Allowed CORS origins (comma-separated)",
+      "value": "*",
+      "required": false
+    },
+    "RATE_LIMIT_WINDOW_MS": {
+      "description": "Rate limiting window in milliseconds",
+      "value": "900000",
+      "required": false
+    },
+    "RATE_LIMIT_MAX_REQUESTS": {
+      "description": "Maximum requests per window",
+      "value": "1000",
+      "required": false
+    },
+    "LOG_LEVEL": {
+      "description": "Logging level",
+      "value": "info",
+      "required": false
+    },
+    "TWILIO_ACCOUNT_SID": {
+      "description": "Twilio Account SID (optional)",
+      "required": false
+    },
+    "TWILIO_AUTH_TOKEN": {
+      "description": "Twilio Auth Token (optional)",
+      "required": false
+    },
+    "NEXMO_API_KEY": {
+      "description": "Nexmo API Key (optional)",
+      "required": false
+    },
+    "NEXMO_API_SECRET": {
+      "description": "Nexmo API Secret (optional)",
+      "required": false
+    },
+    "PLIVO_AUTH_ID": {
+      "description": "Plivo Auth ID (optional)",
+      "required": false
+    },
+    "PLIVO_AUTH_TOKEN": {
+      "description": "Plivo Auth Token (optional)",
+      "required": false
+    },
+    "MESSAGEBIRD_ACCESS_KEY": {
+      "description": "MessageBird Access Key (optional)",
+      "required": false
+    },
+    "SMTP_HOST": {
+      "description": "SMTP server host for email notifications (optional)",
+      "required": false
+    },
+    "SMTP_PORT": {
+      "description": "SMTP server port",
+      "value": "587",
+      "required": false
+    },
+    "SMTP_USER": {
+      "description": "SMTP username (optional)",
+      "required": false
+    },
+    "SMTP_PASS": {
+      "description": "SMTP password (optional)",
+      "required": false
+    },
+    "FROM_EMAIL": {
+      "description": "From email address for notifications",
+      "value": "noreply@disposms.com",
+      "required": false
+    },
+    "SENTRY_DSN": {
+      "description": "Sentry DSN for error tracking (optional)",
+      "required": false
+    },
+    "GOOGLE_ANALYTICS_ID": {
+      "description": "Google Analytics tracking ID (optional)",
+      "required": false
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "basic"
+    }
+  },
+  "addons": [
+    {
+      "plan": "heroku-redis:mini",
+      "as": "REDIS"
+    },
+    {
+      "plan": "heroku-postgresql:mini",
+      "as": "DATABASE"
+    }
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ],
+  "stack": "heroku-22",
+  "environments": {
+    "test": {
+      "addons": [
+        "heroku-redis:mini"
+      ],
+      "env": {
+        "NODE_ENV": "test"
+      },
+      "formation": {
+        "web": {
+          "quantity": 1,
+          "size": "basic"
+        }
+      },
+      "scripts": {
+        "test": "npm test"
+      }
+    }
+  }
+}
+
